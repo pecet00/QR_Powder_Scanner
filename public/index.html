@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Powder Sinterit</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/html5-qrcode.min.js"></script>
+</head>
+<body>
+  <h1>Sinterit Powder QR</h1>
+  
+  <div id="qr-reader" style="width: 360px; margin: 0 auto;"></div>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Powder</th>
+        <th>Printer</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="qrTable">
+      <tr>
+        <td id="qrCode1">-</td>
+        <td id="qrCode2">-</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div>
+    <button id="clearBtn">Clear</button>
+    <button id="sendBtn">Send to MySQL</button>
+  </div>
+  <div>
+
+  </div>
+  <script src="/script.js"></script>
+</body>
+</html>
