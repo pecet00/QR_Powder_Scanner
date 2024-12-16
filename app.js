@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('expres');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const path = require('path');
@@ -53,4 +53,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log("Sinterit QR Scanner, by Filip Koszut")
   console.log(`port:${port}`);
+
 });

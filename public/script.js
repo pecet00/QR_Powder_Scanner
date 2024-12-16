@@ -1,22 +1,22 @@
 document.getElementById('clearBtn').addEventListener('click', clearTable);
 document.getElementById('sendBtn').addEventListener('click', sendToDatabase);
 
-let qr1Value = "";
-let qrCodes = [];
+let powderQR = "";
+let printerQR = [];
 let lastScanned = "";
 
 function updateTable() {
-  const qr1 = qr1Value;
+  const qr1 = powderQR;
   renderTable();
 }
 
 function addToTable(code) {
-  if (!qr1Value) {
-    alert("Najpierw zeskanuj kod QR dla pola QR1 (Printer).");
+  if (!powderQR) {
+    alert("Najpierw zeskanuj kod QR dla drukarki");
     return;
   }
 
-  qrCodes.push(code);
+  printerQR.push(code);
   renderTable();
 }
 
@@ -26,18 +26,18 @@ function renderTable() {
 
   const qr1Row = `
     <tr>
-      <td>${qr1Value || '-'}</td>
+      <td>${powderQR || '-'}</td>
       <td>-</td>
-      <td></td> <!-- Kolumna na przycisk Usuń -->
+      <td></td>
     </tr>`;
   tableBody.innerHTML += qr1Row;
 
-  qrCodes.forEach((code, index) => {
+  printerQR.forEach((code, index) => {
     const row = `
       <tr>
-        <td>${qr1Value}</td>
+        <td>${powderQR}</td>
         <td>${code}</td>
-        <td><button onclick="removeFromTable(${index})">Usuń</button></td>
+        <td><button class="btn" id="delBtn" onclick="removeFromTable(${index})">Usuń</button></td>
       </tr>`;
     tableBody.innerHTML += row;
   });
@@ -45,30 +45,30 @@ function renderTable() {
 
 function removeFromTable(index) {
 
-  qrCodes.splice(index, 1);
+  printerQR.splice(index, 1);
   renderTable();
 }
 
 function clearTable() {
-  qr1Value = '';
-  qrCodes = [];
+  powderQR = '';
+  printerQR = [];
   renderTable();
 }
 
 function sendToDatabase() {
-  if (!qr1Value) {
-    alert("Kod QR1 jest wymagany przed wysłaniem.");
+  if (!powderQR) {
+    alert("Need powder ID");
     return;
   }
 
-  if (qrCodes.length === 0) {
-    alert("Dodaj przynajmniej jeden dodatkowy kod QR przed wysłaniem.");
+  if (printerQR.length === 0) {
+    alert("Add some printer bef. you send to DB");
     return;
   }
 
-  const dataToSend = qrCodes.map(code => ({
+  const dataToSend = printerQR.map(code => ({
     printer: code,
-    powder: qr1Value
+    powder: powderQR
   }));
 
   fetch('/save', {
@@ -104,8 +104,8 @@ html5QrCode.start(
     lastScanTime = currentTime;
     lastScanned = qrCodeMessage;
 
-    if (!qr1Value) {
-      qr1Value = qrCodeMessage;
+    if (!powderQR) {
+      powderQR = qrCodeMessage;
       updateTable();
 
       scannedSound.play();

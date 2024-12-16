@@ -2,6 +2,8 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 5px;
+  background-color:rgb(23, 24, 29);
+  color: rgb(102,170,229);
 }
 
 input {
@@ -18,4 +20,26 @@ table {
 th, td {
   padding: 10px;
   text-align: center;
+}
+#clearBtn {
+  background-color: #ff0000;
+
+}
+#sendBtn {
+  background-color: #006f25;
+}
+.btn {
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 20px;
+}
+#delBtn{
+  background-color: rgb(34,36,31);
+  color :#ff0000;
+
 }
