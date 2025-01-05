@@ -16,7 +16,7 @@ function addToTable(code) {
     return;
   }
 
-  printerQR.push(code);
+  printerQR.unshift(code);
   renderTable();
 }
 
@@ -24,13 +24,7 @@ function renderTable() {
   const tableBody = document.getElementById('qrTable');
   tableBody.innerHTML = "";
 
-  const qr1Row = `
-    <tr>
-      <td>${powderQR || '-'}</td>
-      <td>-</td>
-      <td></td>
-    </tr>`;
-  tableBody.innerHTML += qr1Row;
+
 
   printerQR.forEach((code, index) => {
     const row = `
@@ -93,8 +87,8 @@ html5QrCode.start(
   { fps: 10, qrbox: { width: 200, height: 200 } }, 
   qrCodeMessage => {
     const currentTime = Date.now();
-    if (currentTime - lastScanTime < 5000) {
-      console.log("Oczekiwanie na 5 sekund między skanami...");
+    if (currentTime - lastScanTime < 1000) {
+      console.log("Oczekiwanie na 1 sekund między skanami...");
       return;
     }
     if (qrCodeMessage === lastScanned) {
