@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Sinterit QR Scanner, by Filip Koszut")
+  console.log("QR Scanner, by Filip Koszut")
   console.log(`port:${port}`);
 
 });
